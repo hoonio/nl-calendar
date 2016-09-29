@@ -7,7 +7,7 @@ import {
   Text,
 } from 'react-native';
 
-import TaskRow from './TaskRow';
+import TaskRow from './TaskRow/Component';
 
 class TaskList extends React.Component {
   constructor(props, context) {
