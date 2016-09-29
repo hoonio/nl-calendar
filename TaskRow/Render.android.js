@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, Image, StyleSheet } from 'react-native';
+
+const localStyle = StyleSheet.create({
+  doneButton: {
+    borderRadius: 5,
+    padding: 5,
+  }
+})
 
 export default function render(styles) {
   return (
@@ -9,9 +16,10 @@ export default function render(styles) {
       </Text>
       <TouchableHighlight
         onPress={this.onDonePressed.bind(this)}
-        style={styles.doneButton}
+        style={localStyle.doneButton}
+        underlayColor="#ddd"
       >
-        <Text>Done</Text>
+        <Image source={require('../images/done.png')} />
       </TouchableHighlight>
     </View>
   )
