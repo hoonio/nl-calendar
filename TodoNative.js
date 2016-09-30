@@ -5,6 +5,7 @@ import {
   AppRegistry,
   Navigator,
 } from 'react-native';
+import store from './todoStore';
 
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
@@ -12,16 +13,11 @@ import TaskForm from './TaskForm';
 class App extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      todos: [
-        {
-          task: 'Follow React Native tutorial',
-        },
-        {
-          task: 'Review redux',
-        },
-      ],
-    };
+    this.state = store.getState();
+
+    store.subscribe(() => {
+      this.setState(store.getState()); // eslint-disable-line react/no-set-state
+    });
   }
 
   onAddStarted() {
@@ -32,10 +28,14 @@ class App extends React.Component {
 
   onAdd(task) {
     console.log('task added:', task);
-    this.state.todos.push({ task });
-    this.setState({
-      todos: this.state.todos
-    });
+    // this.state.todos.push({ task });
+    // this.setState({
+    //   todos: this.state.todos
+    // });
+    store.dispatch({
+      type: 'ADD_TODO',
+      task,
+    })
     this.nav.pop();
   }
 
