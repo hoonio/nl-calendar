@@ -28,10 +28,6 @@ class App extends React.Component {
 
   onAdd(task) {
     console.log('task added:', task);
-    // this.state.todos.push({ task });
-    // this.setState({
-    //   todos: this.state.todos
-    // });
     store.dispatch({
       type: 'ADD_TODO',
       task,
@@ -46,10 +42,10 @@ class App extends React.Component {
 
   onDone(todo) {
     console.log('task was completed:', todo.task);
-    const filteredTodos = this.state.todos.filter((filterTodo) => {
-      return filterTodo !== todo;
+    store.dispatch({
+      type: 'DONE_TODO',
+      todo,
     });
-    this.setState({ todos: filteredTodos });
   }
 
   renderScene(route, nav) {
