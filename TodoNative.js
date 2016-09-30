@@ -48,6 +48,12 @@ class App extends React.Component {
     });
   }
 
+  onToggle() {
+    store.dispatch({
+      type: 'TOGGLE_STATE',
+    });
+  }
+
   renderScene(route, nav) {
     switch(route.name) {
       case 'taskform':
@@ -60,8 +66,10 @@ class App extends React.Component {
       default:
         return(
           <TaskList
+            filter={this.state.filter}
             onAddStarted={this.onAddStarted.bind(this)}
             onDone={this.onDone.bind(this)}
+            onToggle={this.onToggle.bind(this)}
             todos={this.state.todos} />
         );
     }
